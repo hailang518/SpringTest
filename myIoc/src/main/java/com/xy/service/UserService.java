@@ -9,7 +9,7 @@ public class UserService {
     private Dao dao;
 
     public void find(){
-        System.out.println("UserService");
+        System.out.println("userService");
         dao.query();
     }
 
