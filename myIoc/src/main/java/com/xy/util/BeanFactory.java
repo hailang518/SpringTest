@@ -82,9 +82,9 @@ public class BeanFactory {
                     }
                 }
 
-                // 定义的标签没有子节点
                 if (obj == null){
                     if (flag){
+                        // 此处自动装配按照byType进行，如按照byName进行，方法类似
                         if ("byType".equals(attribute.getValue())) {
                             // 判断是否有依赖
                             Field[] fields = clazz.getDeclaredFields();
@@ -102,7 +102,8 @@ public class BeanFactory {
                                 }
 
                                 if (count > 1){
-                                    throw new ServiceException("找到多个BeanName的实现");
+                                    // 由于是按照类型装配，需要判断一个接口是否有多个实现，若有多个实现，则不知装配哪一个，故报错
+                                    throw new ServiceException("找到BeanName对应接口的多个实现");
                                 } else {
                                     obj = clazz.newInstance();
                                     field.setAccessible(true);
