@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<beans>
-    <bean id="dao" class="com.xy.dao.UserDaoImp"></bean>
+<beans autowire-default="byType">
+    <bean id="dao" class="com.xy.dao.UserDaoImpl"/>
 
     <bean id="userService" class="com.xy.service.UserService">
-        <property name="dao" value="dao"></property>
+        <!--<property name="dao" ref="dao"></property>-->
+        <!--<constructor name="dao" ref="dao"></constructor>-->
     </bean>
 </beans>
 
